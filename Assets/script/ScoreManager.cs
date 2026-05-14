@@ -11,8 +11,8 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        //int savedHighScore = PlayerPrefs.GetInt("HighScore", 0);
-       // highScoreText.text = "High Score: " + savedHighScore;
+        int savedHighScore = PlayerPrefs.GetInt("HighScore", 0);
+        highScoreText.text = "High Score: " + savedHighScore;
     }
 
     void Update()
@@ -32,8 +32,11 @@ public class ScoreManager : MonoBehaviour
 
         if (finalScore > savedHighScore)
         {
-            PlayerPrefs.SetInt("HighScore", finalScore);
+            savedHighScore = finalScore;
+            PlayerPrefs.SetInt("HighScore", savedHighScore);
             PlayerPrefs.Save();
         }
+
+        highScoreText.text = "High Score: " + savedHighScore;
     }
 }
